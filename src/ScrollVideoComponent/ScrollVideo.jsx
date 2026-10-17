@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Observer } from 'gsap/Observer';
 import { useGSAP } from '@gsap/react';
 
 import './ScrollVideo.css';
@@ -8,7 +9,7 @@ import './ScrollVideo.css';
 import videoSrc from '/src/assets/video/ananta-story.mp4';
 import posterSrc from '/src/assets/images/ananta-start.jpg';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, Observer);
 
 export default function ScrollVideo() {
   const containerRef = useRef(null);
@@ -19,7 +20,8 @@ export default function ScrollVideo() {
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const container = containerRef.current;
+    if (!video || !container) return;
 
     video.currentTime = 0.1;
 
@@ -28,12 +30,12 @@ export default function ScrollVideo() {
     };
     video.addEventListener('loadedmetadata', handleMetadata);
 
-    const tl = gsap.timeline({
+    const st = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: true,
+        scrub: 1.2,
         onUpdate: (self) => {
           if (video.duration) {
             video.currentTime = self.progress * video.duration;
@@ -42,10 +44,44 @@ export default function ScrollVideo() {
       },
     });
 
+    const keyboardObserver = Observer.create({
+      target: window,
+      type: 'keydown',
+      onKeyDown: (self) => {
+        const rect = container.getBoundingClientRect();
+        const isInSection = rect.top <= 10 && rect.bottom >= window.innerHeight;
+
+        if (!isInSection) return;
+
+        const key = self.event.key;
+        const keysToIntercept = [
+          'PageDown',
+          'PageUp',
+          ' ',
+          'ArrowDown',
+          'ArrowUp',
+        ];
+
+        if (keysToIntercept.includes(key)) {
+          self.event.preventDefault();
+
+          const isDown = ['PageDown', 'ArrowDown', ' '].includes(key);
+          const step = isDown ? 250 : -250;
+
+          gsap.to(window, {
+            scrollTo: { y: window.scrollY + step, autoKill: false },
+            duration: 0.4,
+            ease: 'power2.out',
+          });
+        }
+      },
+    });
+
     return () => {
       video.removeEventListener('loadedmetadata', handleMetadata);
-      tl.kill();
       ScrollTrigger.getAll().forEach((t) => t.kill());
+      st.kill();
+      keyboardObserver.kill();
     };
   }, []);
 
