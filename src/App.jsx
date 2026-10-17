@@ -25,13 +25,14 @@ export default function App() {
       {/* Header */}
       <Header />
       {/* Content block with video */}
-      <div className="flex-1 min-h-0 w-full flex items-center justify-center">
+      <div className="relative w-full h-dvh overflow-hidden flex flex-col justify-between">
         <img
           src="src/assets/images/seo-img-ananta.png"
           alt="Main SEO image"
-          className="w-full h-auto block"
+          className="w-full h-full object-cover object-top block"
         ></img>
-        <div className="absolute z-10 bottom-0 my-4 w-full flex flex-col items-center">
+        <div className="absolute bottom-0 left-0 w-full h-28 sm:h-35 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10" />
+        <div className="absolute z-10 bottom-0 pb-20 sm:pb-32 my-4 w-full flex flex-col items-center">
           <p className="flex items-center py-2 drop-shadow-xl tracking-widest uppercase font-(family-name:--roboto-font) text-4xl text-white [-webkit-text-stroke:0.05px_var(--color-cyan-400)]">
             Global Release
           </p>
