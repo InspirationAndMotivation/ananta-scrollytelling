@@ -6,7 +6,7 @@ import News from './NewsComponent/News';
 import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
-import seoImg from '../assets/images/seo-img-ananta.png';
+import seoImg from './assets/images/seo-img-ananta.png';
 
 gsap.registerPlugin(ScrollToPlugin);
 
