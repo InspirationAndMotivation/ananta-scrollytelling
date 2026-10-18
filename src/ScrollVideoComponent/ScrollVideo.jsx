@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Observer } from 'gsap/Observer';
-import { useGSAP } from '@gsap/react';
 
 import './ScrollVideo.css';
 
@@ -11,11 +10,12 @@ import posterSrc from '/src/assets/images/ananta-start.jpg';
 
 gsap.registerPlugin(ScrollTrigger, Observer);
 
+const START_SECOND = 0.1;
 const CHARACTERS = [
   {
     id: 'char-1',
-    startProgress: 0.018,
-    endProgress: 0.14,
+    startProgress: 0.06,
+    endProgress: 0.2,
     align: 'left',
     name: 'Captain',
     role: 'Leader of the ACD',
@@ -26,8 +26,8 @@ const CHARACTERS = [
   },
   {
     id: 'char-2',
-    startProgress: 0.23,
-    endProgress: 0.29,
+    startProgress: 0.29,
+    endProgress: 0.4,
     align: 'right',
     name: 'Taffy',
     role: 'Courier & Yeet Squad Founder',
@@ -39,8 +39,8 @@ const CHARACTERS = [
   },
   {
     id: 'char-3',
-    startProgress: 0.43,
-    endProgress: 0.5,
+    startProgress: 0.58,
+    endProgress: 0.69,
     align: 'right',
     name: 'Richie',
     role: 'ACD Field Operative',
@@ -52,8 +52,8 @@ const CHARACTERS = [
   },
   {
     id: 'char-4',
-    startProgress: 0.61,
-    endProgress: 0.69,
+    startProgress: 0.84,
+    endProgress: 0.94,
     align: 'right',
     name: 'Seymour',
     role: 'Hacker & Informant',
@@ -69,41 +69,67 @@ export default function ScrollVideo() {
   const containerRef = useRef(null);
   const overlayRef = useRef(null);
   const videoRef = useRef(null);
+  const fadeOverlayRef = useRef(null);
 
   const [activeCharacter, setActiveCharacter] = useState(null);
 
   useEffect(() => {
     const video = videoRef.current;
     const container = containerRef.current;
+    const fadeOverlay = fadeOverlayRef.current;
+    const overlay = overlayRef.current;
+
     if (!video || !container) return;
 
-    video.currentTime = 0.1;
-
-    const handleMetadata = () => {
-      video.currentTime = 0.01;
+    const setStartFrame = () => {
+      video.currentTime = START_SECOND;
     };
-    video.addEventListener('loadedmetadata', handleMetadata);
 
-    const st = gsap.timeline({
+    if (video.readyState >= 1) {
+      setStartFrame();
+    } else {
+      video.addEventListener('loadedmetadata', setStartFrame, { once: true });
+    }
+
+    const entryAnimation = gsap.to(overlay, {
+      opacity: 0,
+      ease: 'none',
       scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1.2,
-        onUpdate: (self) => {
-          if (video.duration) {
-            video.currentTime = self.progress * video.duration;
+        trigger: container,
+        start: 'top bottom',
+        end: 'top top',
+        scrub: true,
+      },
+    });
+
+    const st = ScrollTrigger.create({
+      trigger: container,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 1.2,
+      onUpdate: (self) => {
+        const currentProgress = self.progress;
+
+        if (video.duration) {
+          video.currentTime = START_SECOND + self.progress * video.duration;
+        }
+
+        if (fadeOverlay) {
+          if (currentProgress >= 0.93) {
+            const fadeOpacity = (currentProgress - 0.93) / 0.04;
+            fadeOverlay.style.opacity = Math.min(Math.max(fadeOpacity, 0), 1);
+          } else {
+            fadeOverlay.style.opacity = 0;
           }
+        }
 
-          const currentProgress = self.progress;
-          const currentCharacter = CHARACTERS.find(
-            (char) =>
-              currentProgress >= char.startProgress &&
-              currentProgress <= char.endProgress,
-          );
+        const currentCharacter = CHARACTERS.find(
+          (char) =>
+            currentProgress >= char.startProgress &&
+            currentProgress <= char.endProgress,
+        );
 
-          setActiveCharacter(currentCharacter ? currentCharacter.id : null);
-        },
+        setActiveCharacter(currentCharacter ? currentCharacter.id : null);
       },
     });
 
@@ -141,67 +167,39 @@ export default function ScrollVideo() {
     });
 
     return () => {
-      video.removeEventListener('loadedmetadata', handleMetadata);
+      video.removeEventListener('loadedmetadata', setStartFrame);
+      entryAnimation.scrollTrigger?.kill();
+      entryAnimation.kill();
       ScrollTrigger.getAll().forEach((t) => t.kill());
       st.kill();
       keyboardObserver.kill();
     };
   }, []);
 
-  useGSAP(
-    () => {
-      const video = videoRef.current;
-      if (!video) return;
-
-      const initScroll = () => {
-        if (!video.duration) return;
-
-        gsap.to(overlayRef.current, {
-          opacity: 0,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top bottom',
-            end: 'top -50%',
-            scrub: true,
-          },
-        });
-
-        gsap.to(video, {
-          currentTime: video.duration,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top top',
-            end: '+=300%',
-            scrub: 0.5,
-            pin: true,
-            anticipatePin: 1,
-          },
-        });
-      };
-
-      if (video.readyState >= 1) {
-        initScroll();
-      } else {
-        video.addEventListener('loadedmetadata', initScroll);
-        return () => video.removeEventListener('loadedmetadata', initScroll);
-      }
-    },
-    { scope: containerRef },
-  );
-
   return (
     <div
       ref={containerRef}
       className="relative w-full h-[500vh] bg-[var(--background-color)]"
     >
-      <div className="absolute top-0 left-0 w-full h-24 sm:h-32 bg-gradient-to-b from-black via-black/50 to-transparent pointer-events-none z-20" />
-      <div
-        ref={overlayRef}
-        className="absolute inset-0 bg-black pointer-events-none z-20"
-      />
       <div className="sticky top-0 w-full h-screen overflow-hidden">
+        {/* Top edge gradient */}
+        <div className="absolute top-0 left-0 w-full h-24 sm:h-32 bg-gradient-to-b from-black via-black/50 to-transparent pointer-events-none z-20" />
+
+        {/* Bottom edge gradient */}
+        <div className="absolute bottom-0 left-0 w-full h-28 sm:h-36 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none z-20" />
+
+        {/* Initial black overlay (Fade-In) */}
+        <div
+          ref={overlayRef}
+          className="absolute inset-0 bg-black pointer-events-none z-20"
+        />
+
+        {/* Final black overlay (Fade-Out) — strictly bounded to h-screen */}
+        <div
+          ref={fadeOverlayRef}
+          className="absolute inset-0 bg-[var(--background-color)] pointer-events-none z-25 opacity-0"
+        />
+
         <video
           ref={videoRef}
           src={videoSrc}
