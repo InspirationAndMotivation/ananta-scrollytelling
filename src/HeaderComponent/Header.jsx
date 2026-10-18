@@ -1,6 +1,8 @@
 import gsap from 'gsap';
 import './Header.css';
 
+import logo from '../assets/images/logo.png';
+
 const Header = () => {
   const handleScrollToNews = (e) => {
     e.preventDefault();
@@ -32,11 +34,7 @@ const Header = () => {
     <>
       <header className="w-full px-4 sm:px-8 lg:px-25 py-2 sm:py-4 lg:py-6 flex items-center justify-between text-white border-b border-white/10 bg-[var(--background-color)]">
         <div className="flex items-center gap-4 sm:gap-8 lg:gap-20">
-          <img
-            alt="ANANTA"
-            src={`${import.meta.env.BASE_URL}/src/assets/images/logo.png`}
-            className="h-7 w-auto"
-          ></img>
+          <img alt="ANANTA" src={logo} className="h-7 w-auto"></img>
           <nav className="hidden xl:flex items-center gap-4 sm:gap-8 lg:gap-20 mx-10 text-xs sm:text-sm lg:text-lg font-medium tracking-wide text-white/50">
             <a href="#home" className="hover:text-white transition-colors">
               Home

@@ -6,6 +6,8 @@ import News from './NewsComponent/News';
 import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
+import seoImg from '../assets/images/seo-img-ananta.png';
+
 gsap.registerPlugin(ScrollToPlugin);
 
 export default function App() {
@@ -29,7 +31,7 @@ export default function App() {
       {/* Content block with video */}
       <div className="relative w-full h-dvh overflow-hidden flex flex-col justify-between">
         <img
-          src={`${import.meta.env.BASE_URL}/src/assets/images/seo-img-ananta.png`}
+          src={seoImg}
           alt="Main SEO image"
           className="w-full h-full object-cover object-top block"
         ></img>
