@@ -29,7 +29,7 @@ export default function App() {
       {/* Content block with video */}
       <div className="relative w-full h-dvh overflow-hidden flex flex-col justify-between">
         <img
-          src={`${import.meta.env.BASE_URL}/assets/images/seo-img-ananta.png`}
+          src={`${import.meta.env.BASE_URL}/src/assets/images/seo-img-ananta.png`}
           alt="Main SEO image"
           className="w-full h-full object-cover object-top block"
         ></img>

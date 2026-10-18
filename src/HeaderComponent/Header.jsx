@@ -34,7 +34,7 @@ const Header = () => {
         <div className="flex items-center gap-4 sm:gap-8 lg:gap-20">
           <img
             alt="ANANTA"
-            src={`${import.meta.env.BASE_URL}/assets/images/logo.png`}
+            src={`${import.meta.env.BASE_URL}/src/assets/images/logo.png`}
             className="h-7 w-auto"
           ></img>
           <nav className="hidden xl:flex items-center gap-4 sm:gap-8 lg:gap-20 mx-10 text-xs sm:text-sm lg:text-lg font-medium tracking-wide text-white/50">
