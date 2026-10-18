@@ -1,6 +1,33 @@
+import gsap from 'gsap';
 import './Header.css';
 
 const Header = () => {
+  const handleScrollToNews = (e) => {
+    e.preventDefault();
+
+    gsap.to(window, {
+      duration: 6.5,
+      scrollTo: {
+        y: '#news',
+        autoKill: false,
+      },
+      ease: 'power2.inOut',
+    });
+  };
+
+  const handleScrollToChars = (e) => {
+    e.preventDefault();
+
+    gsap.to(window, {
+      duration: 1.5,
+      scrollTo: {
+        y: '#characters',
+        autoKill: false,
+      },
+      ease: 'power2.inOut',
+    });
+  };
+
   return (
     <>
       <header className="w-full px-10 sm:px-15 lg:px-25 py-2 sm:py-4 lg:py-6 flex items-center justify-between text-white border-b border-white/10 bg-[var(--background-color)]">
@@ -22,6 +49,7 @@ const Header = () => {
             </a>
             <a
               href="#characters"
+              onClick={handleScrollToChars}
               className="hover:text-white transition-colors"
             >
               Characters
@@ -32,7 +60,11 @@ const Header = () => {
             >
               Locations
             </a>
-            <a href="#news" className="hover:text-white transition-colors">
+            <a
+              href="#news"
+              onClick={handleScrollToNews}
+              className="hover:text-white transition-colors"
+            >
               News
             </a>
             <a
