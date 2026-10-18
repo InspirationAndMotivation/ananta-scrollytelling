@@ -1,6 +1,7 @@
 import Header from './HeaderComponent/Header';
 import Footer from './FooterComponent/Footer';
 import ScrollVideo from './ScrollVideoComponent/ScrollVideo';
+import OutroSection from './OutroSectionComponent/OutroSection';
 import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
@@ -63,6 +64,7 @@ export default function App() {
       </div>
       <div id="characters">
         <ScrollVideo />
+        <OutroSection />
       </div>
       {/* Content block with summary */}
       <div className="h-screen bg-neutral-900 flex items-center justify-center text-white">
