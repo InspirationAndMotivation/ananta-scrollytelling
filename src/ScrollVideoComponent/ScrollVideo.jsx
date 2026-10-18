@@ -5,8 +5,12 @@ import { Observer } from 'gsap/Observer';
 
 import './ScrollVideo.css';
 
-import videoSrc from '/src/assets/video/ananta-story.mp4';
+import videoCompressedSrc from '/src/assets/video/ananta-story-compressed.mp4';
+import videoHDSrc from '/src/assets/video/ananta-story.mp4';
 import posterSrc from '/src/assets/images/ananta-start.jpg';
+
+const isMobile = matchMedia('(max-width: 768px)').matches;
+const videoSrc = isMobile ? videoCompressedSrc : videoHDSrc;
 
 gsap.registerPlugin(ScrollTrigger, Observer);
 
