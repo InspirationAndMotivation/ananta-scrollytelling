@@ -30,14 +30,14 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full px-10 sm:px-15 lg:px-25 py-2 sm:py-4 lg:py-6 flex items-center justify-between text-white border-b border-white/10 bg-[var(--background-color)]">
-        <div className="flex items-center gap-15">
+      <header className="w-full px-4 sm:px-8 lg:px-25 py-2 sm:py-4 lg:py-6 flex items-center justify-between text-white border-b border-white/10 bg-[var(--background-color)]">
+        <div className="flex items-center gap-4 sm:gap-8 lg:gap-20">
           <img
             alt="ANANTA"
             src="src/assets/images/logo.png"
             className="h-7 w-auto"
           ></img>
-          <nav className="flex items-center gap-15 lg:gap-20 mx-10 text-base sm:text-sm lg:text-lg font-medium tracking-wide text-white/50">
+          <nav className="hidden xl:flex items-center gap-4 sm:gap-8 lg:gap-20 mx-10 text-xs sm:text-sm lg:text-lg font-medium tracking-wide text-white/50">
             <a href="#home" className="hover:text-white transition-colors">
               Home
             </a>
@@ -75,7 +75,7 @@ const Header = () => {
             </a>
           </nav>
         </div>
-        <div className="flex items-center mx-4">
+        <div className="flex items-center flex-shrink-0">
           <svg
             data-v-4e935bf4=""
             width="73"
