@@ -5,7 +5,7 @@ import { Observer } from 'gsap/Observer';
 
 import './ScrollVideo.css';
 
-import videoSrc from '/src/assets/video/ananta-story.mp4';
+import videoSrc from '/src/assets/video/ananta-story-compressed.mp4';
 import posterSrc from '/src/assets/images/ananta-start.jpg';
 
 gsap.registerPlugin(ScrollTrigger, Observer);
