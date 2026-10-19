@@ -12,7 +12,7 @@ import cloudIcon from '../assets/images/icon-cloud.svg';
 const Footer = () => {
   return (
     <>
-      <footer className="w-full text-white bg-[var(--background-color)] py-12 px-6 sm:px-12 md:px-20 border-t border-neutral-900 select-none">
+      <footer className="w-full my-4 text-white bg-[var(--background-color)] py-12 px-6 sm:px-12 md:px-20 border-t border-neutral-900 select-none">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-14 gap-10 items-start">
           <div className="lg:col-span-6 flex flex-col gap-8 items-start">
             <img

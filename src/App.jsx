@@ -40,7 +40,7 @@ export default function App() {
           <p className="flex items-center py-2 drop-shadow-xl tracking-widest uppercase font-(family-name:--roboto-font) text-4xl text-white [-webkit-text-stroke:0.05px_var(--color-cyan-400)]">
             Global Release
           </p>
-          <p className="flex items-center text-center py-2 drop-shadow-xl tracking-wider uppercase font-medium font-(family-name:--roboto-font) text-8xl text-white [-webkit-text-stroke:0.1px_var(--color-cyan-400)]">
+          <p className="flex items-center text-center py-2 drop-shadow-xl tracking-wider uppercase font-medium font-(family-name:--roboto-font) text-5xl lg:text-8xl text-white [-webkit-text-stroke:0.1px_var(--color-cyan-400)]">
             January 15, 2027
           </p>
           <a

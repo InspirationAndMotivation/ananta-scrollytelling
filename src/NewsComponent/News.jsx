@@ -10,10 +10,10 @@ const News = () => {
         <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5 flex flex-col gap-8">
             <div className="relative">
-              <h2 className="text-7xl font-(family-name:--roboto-font) font-black uppercase tracking-tight text-white leading-none">
+              <h2 className="text-4xl md:text-6xl lg:text-8xl font-(family-name:--roboto-font) font-black uppercase tracking-tight text-white leading-none">
                 NEWS
               </h2>
-              <span className="block text-xl sm:text-4xl font-(family-name:--roboto-font) font-semibold uppercase tracking-wider text-white/60 mt-1">
+              <span className="block text-xl md:text-4xl lg:text-5xl font-(family-name:--roboto-font) font-semibold uppercase tracking-wider text-white/60 mt-1">
                 NEWS
               </span>
             </div>
