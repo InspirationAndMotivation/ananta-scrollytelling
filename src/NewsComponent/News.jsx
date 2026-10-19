@@ -5,12 +5,12 @@ const News = () => {
     <>
       <div
         id="news"
-        className="h-screen mx-2 bg-[var(--background-color)] flex items-center justify-center text-white"
+        className="h-screen m-2 bg-[var(--background-color)] flex items-center justify-center text-white"
       >
         <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5 flex flex-col gap-8">
             <div className="relative">
-              <h2 className="text-7xl sm:text-8xl font-(family-name:--roboto-font) font-black uppercase tracking-tight text-white leading-none">
+              <h2 className="text-7xl font-(family-name:--roboto-font) font-black uppercase tracking-tight text-white leading-none">
                 NEWS
               </h2>
               <span className="block text-xl sm:text-4xl font-(family-name:--roboto-font) font-semibold uppercase tracking-wider text-white/60 mt-1">
@@ -18,7 +18,7 @@ const News = () => {
               </span>
             </div>
 
-            <div className="relative w-full aspect-video rounded-sm overflow-hidden bg-neutral-900 border border-neutral-800 shadow-2xl">
+            <div className="relative w-full max-w-xs lg:max-w-none aspect-video rounded-sm overflow-hidden bg-neutral-900 border border-neutral-800 shadow-2xl">
               <img
                 src={newsImage}
                 alt="News Image"

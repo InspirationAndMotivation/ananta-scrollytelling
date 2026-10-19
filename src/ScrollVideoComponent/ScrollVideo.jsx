@@ -183,7 +183,7 @@ export default function ScrollVideo() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[500vh] bg-[var(--background-color)]"
+      className="relative w-full h-[500vh] m-2 bg-[var(--background-color)]"
     >
       <div className="sticky top-0 w-full h-screen overflow-hidden">
         {/* Top edge gradient */}
