@@ -5,7 +5,7 @@ const News = () => {
     <>
       <div
         id="news"
-        className="h-screen m-2 bg-[var(--background-color)] flex items-center justify-center text-white"
+        className="h-screen bg-[var(--background-color)] flex items-center justify-center text-white"
       >
         <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5 flex flex-col gap-8">
