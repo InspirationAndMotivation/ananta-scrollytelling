@@ -25,7 +25,7 @@ export default function App() {
   };
 
   return (
-    <div className="w-full bg-[var(--background-color)]">
+    <div className="w-full overflow-x-hidden bg-[var(--background-color)]">
       {/* Header */}
       <Header />
       {/* Content block with video */}
@@ -37,7 +37,7 @@ export default function App() {
         ></img>
         <div className="absolute bottom-0 left-0 w-full h-28 sm:h-35 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10" />
         <div className="absolute z-10 bottom-0 pb-20 sm:pb-32 my-4 w-full flex flex-col items-center">
-          <p className="flex items-center py-2 drop-shadow-xl tracking-widest uppercase font-(family-name:--roboto-font) text-4xl text-white [-webkit-text-stroke:0.05px_var(--color-cyan-400)]">
+          <p className="flex items-center text-center py-2 drop-shadow-xl tracking-widest uppercase font-(family-name:--roboto-font) text-4xl text-white [-webkit-text-stroke:0.05px_var(--color-cyan-400)]">
             Global Release
           </p>
           <p className="flex items-center text-center py-2 drop-shadow-xl tracking-wider uppercase font-medium font-(family-name:--roboto-font) text-5xl lg:text-8xl text-white [-webkit-text-stroke:0.1px_var(--color-cyan-400)]">

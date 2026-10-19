@@ -100,7 +100,7 @@ export default function OutroSection() {
       <div className="relative z-10 flex flex-col items-center text-center px-4">
         <div
           ref={dateRef}
-          className="text-5xl sm:text-7xl md:text-8xl font-extrabold text-white tracking-wider mb-4 drop-shadow-[0_0_25px_rgba(255,255,255,0.3)]"
+          className="text-4xl sm:text-7xl md:text-8xl font-extrabold text-white tracking-wider mb-4 drop-shadow-[0_0_25px_rgba(255,255,255,0.3)]"
         >
           2027.01.15
         </div>
