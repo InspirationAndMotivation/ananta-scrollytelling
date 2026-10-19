@@ -185,7 +185,7 @@ export default function ScrollVideo() {
       ref={containerRef}
       className="relative w-full h-[500vh] bg-[var(--background-color)]"
     >
-      <div className="sticky top-0 w-full h-screen overflow-hidden">
+      <div className="sticky top-0 w-full h-screen">
         {/* Top edge gradient */}
         <div className="absolute top-0 left-0 w-full h-24 sm:h-32 bg-gradient-to-b from-black via-black/50 to-transparent pointer-events-none z-20" />
 
@@ -228,7 +228,7 @@ export default function ScrollVideo() {
                 />
                 <div
                   key={char.id}
-                  className={`absolute max-w-xl overflow-hidden transition-all duration-700 ease-out transform ${
+                  className={`absolute max-w-xl mx-2 overflow-hidden transition-all duration-700 ease-out transform ${
                     isRight
                       ? 'right-8 md:right-16 lg:right-24 text-right'
                       : 'left-8 md:left-16 lg:left-24 text-left'
@@ -241,14 +241,14 @@ export default function ScrollVideo() {
                   <p className="text-cyan-400 font-mono tracking-widest text-xs md:text-sm uppercase mb-1 drop-shadow-md z-10">
                     // 0{index + 1}. {char.role}
                   </p>
-                  <h2 className="text-5xl sm:text-7xl md:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)] z-10">
+                  <h2 className="text-4xl sm:text-7xl md:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)] z-10">
                     {char.name}
                   </h2>
                   <h3
                     className="text-xl md:text-[1.65rem] font-semibold text-slate-100 mt-2 italic drop-shadow-md z-10"
                     dangerouslySetInnerHTML={{ __html: char.title }}
                   />
-                  <p className="text-gray-300 text-sm md:text-base leading-relaxed font-normal mt-4 border-l-2 border-cyan-400/80 pl-4 bg-black/40 backdrop-blur-sm p-3 rounded-r-lg drop-shadow-lg z-10">
+                  <p className="text-gray-300 text-xs sm: text-sm md:text-base leading-relaxed font-normal mt-4 border-l-2 border-cyan-400/80 pl-4 bg-black/40 backdrop-blur-sm p-3 rounded-r-lg drop-shadow-lg z-10">
                     {char.description}
                   </p>
                 </div>

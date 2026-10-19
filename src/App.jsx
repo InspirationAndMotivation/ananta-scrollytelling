@@ -25,11 +25,11 @@ export default function App() {
   };
 
   return (
-    <div className="w-full overflow-x-hidden bg-[var(--background-color)]">
+    <div className="w-full bg-[var(--background-color)]">
       {/* Header */}
       <Header />
       {/* Content block with video */}
-      <div className="relative w-full h-dvh overflow-hidden flex flex-col justify-between">
+      <div className="relative w-full h-dvh flex flex-col justify-between">
         <img
           src={seoImg}
           alt="Main SEO image"
