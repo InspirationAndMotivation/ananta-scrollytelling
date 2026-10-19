@@ -48,7 +48,7 @@ const CHARACTERS = [
     align: 'right',
     name: 'Richie',
     role: 'ACD Field Operative',
-    title: `It's a shot in the dark, but I gotta go with my gut.`,
+    title: `It's a shot in the dark, but </br> I gotta go with my gut.`,
     description: `While it's sometimes hard to tell if she's fiercely dedicated to her work or simply not all there mentally, 
     as far as the ACD is concerned, having her on the team is a major boon. She fights crime by day, and moonlights at night. 
     Pro tip: Any thugs who get pinched would be smart to cooperate with her. The food at the NCCA isn't too bad, and she always 
@@ -211,7 +211,7 @@ export default function ScrollVideo() {
           muted
           playsInline
           preload="auto"
-          className="h-full w-full object-cover block"
+          className="h-full w-full object-cover max-[550px]:object-contain block"
         />
         {/* Dynamic character cards overlay */}
         <div className="absolute inset-0 pointer-events-none z-30 flex items-center justify-start px-8 md:px-16 lg:px-24">
@@ -220,35 +220,39 @@ export default function ScrollVideo() {
             const isRight = char.align === 'right';
 
             return (
-              <div
-                key={char.id}
-                className={`absolute max-w-xl transition-all duration-700 ease-out transform ${
-                  isRight
-                    ? 'right-8 md:right-16 lg:right-24 text-right'
-                    : 'left-8 md:left-16 lg:left-24 text-left'
-                } ${
-                  isActive
-                    ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
-                    : 'opacity-0 translate-y-8 scale-95 pointer-events-none'
-                }`}
-              >
-                <p className="text-cyan-400 font-mono tracking-widest text-xs md:text-sm uppercase mb-1 drop-shadow-md">
-                  // 0{index + 1}. {char.role}
-                </p>
-
-                <h2 className="text-5xl sm:text-7xl md:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
-                  {char.name}
-                </h2>
-
-                <h3
-                  className="text-xl md:text-[1.65rem] font-semibold text-slate-100 mt-2 italic drop-shadow-md"
-                  dangerouslySetInnerHTML={{ __html: char.title }}
+              <>
+                <div
+                  className={`absolute inset-0 hidden max-[550px]:block bg-black/10 backdrop-blur-sm z-0 pointer-events-none ${
+                    isActive ? 'opacity-100' : 'opacity-0'
+                  }`}
                 />
-
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed font-normal mt-4 border-l-2 border-cyan-400/80 pl-4 bg-black/40 backdrop-blur-sm p-3 rounded-r-lg drop-shadow-lg">
-                  {char.description}
-                </p>
-              </div>
+                <div
+                  key={char.id}
+                  className={`absolute max-w-xl overflow-hidden transition-all duration-700 ease-out transform ${
+                    isRight
+                      ? 'right-8 md:right-16 lg:right-24 text-right'
+                      : 'left-8 md:left-16 lg:left-24 text-left'
+                  } ${
+                    isActive
+                      ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
+                      : 'opacity-0 translate-y-8 scale-95 pointer-events-none'
+                  }`}
+                >
+                  <p className="text-cyan-400 font-mono tracking-widest text-xs md:text-sm uppercase mb-1 drop-shadow-md z-10">
+                    // 0{index + 1}. {char.role}
+                  </p>
+                  <h2 className="text-5xl sm:text-7xl md:text-8xl font-black text-white uppercase tracking-tight drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)] z-10">
+                    {char.name}
+                  </h2>
+                  <h3
+                    className="text-xl md:text-[1.65rem] font-semibold text-slate-100 mt-2 italic drop-shadow-md z-10"
+                    dangerouslySetInnerHTML={{ __html: char.title }}
+                  />
+                  <p className="text-gray-300 text-sm md:text-base leading-relaxed font-normal mt-4 border-l-2 border-cyan-400/80 pl-4 bg-black/40 backdrop-blur-sm p-3 rounded-r-lg drop-shadow-lg z-10">
+                    {char.description}
+                  </p>
+                </div>
+              </>
             );
           })}
         </div>
