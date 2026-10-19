@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import Header from './HeaderComponent/Header';
 import Footer from './FooterComponent/Footer';
 import ScrollVideo from './ScrollVideoComponent/ScrollVideo';
 import OutroSection from './OutroSectionComponent/OutroSection';
+// import Preloader from './PreloaderComponent/Preloader';
 import News from './NewsComponent/News';
 import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
@@ -11,6 +13,9 @@ import seoImg from './assets/images/seo-img-ananta.png';
 gsap.registerPlugin(ScrollToPlugin);
 
 export default function App() {
+  // const [progress, setProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const handleScrollToNext = (e) => {
     e.preventDefault();
 
@@ -26,6 +31,7 @@ export default function App() {
 
   return (
     <div className="w-full bg-[var(--background-color)]">
+      {/* {!isLoaded && <Preloader progress={progress} />} */}
       {/* Header */}
       <Header />
       {/* Content block with video */}
@@ -66,7 +72,11 @@ export default function App() {
         </div>
       </div>
       <div id="characters">
-        <ScrollVideo />
+        <ScrollVideo
+          isLoaded={isLoaded}
+          setIsLoaded={setIsLoaded}
+          // onProgress={setProgress}
+        />
         <OutroSection />
       </div>
       {/* Content block with summary */}
